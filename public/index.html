@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../assets/style.css" />
+    <script type="module" src="../script.js" defer></script>
+
+    <script src="../temp.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input
+        id="origin-input"
+        placeholder="Origin"
+        style="height: 50px; width: 50%"
+      />
+      <input
+        id="destination-input"
+        placeholder="Destination"
+        style="height: 50px; width: 50%"
+      />
+      <button id="get_route">Get Route</button>
+
+      <div id="mode-selector" class="controls">
+        <input
+          type="radio"
+          name="type"
+          id="changemode-walking"
+          checked="checked"
+        />
+        <label for="changemode-walking">Walking</label>
+
+        <input type="radio" name="type" id="changemode-transit" />
+        <label for="changemode-transit">Transit</label>
+
+        <input type="radio" name="type" id="changemode-driving" />
+        <label for="changemode-driving">Driving</label>
+      </div>
+    </div>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar"></div>
+    </div>
+  </body>
+</html>
