@@ -54,25 +54,35 @@ function initMap() {
   //add markers
   // autocomplete.addListener("place_changed", () => {
   //   const place = autocomplete.getPlace();
-  //   new google.maps.Marker({
-  //     position: place.geometry.location,
-  //     title: place.name,
-  //     map: map,
-  //   });
+  // new google.maps.Marker({
+  //   position: place.geometry.location,
+  //   title: place.name,
+  //   map: map,
+  // });
   // });
   autocompleteOrigin.addListener("place_changed", () => {
     origin = autocompleteOrigin.getPlace();
     console.log(origin);
+    new google.maps.Marker({
+      position: origin.geometry.location,
+      title: origin.name,
+      map: map,
+    });
   });
   autocompleteDest.addListener("place_changed", () => {
     dest = autocompleteDest.getPlace();
     console.log(dest);
+    new google.maps.Marker({
+      position: dest.geometry.location,
+      title: dest.name,
+      map: map,
+    });
   });
 
   //directions
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
-  directionsRenderer.setMap(map);
+
   directionsRenderer.setPanel(document.getElementById("sidebar"));
 
   const control = document.getElementById("floating-panel");
@@ -139,8 +149,9 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       console.log(steps);
       console.log(last);
       response.routes[0].legs[0].steps = last;
-      // directionsRenderer.setDirections(response);
       //console.log(destination);
+      directionsRenderer.setMap(map);
+
       directionsRenderer.setDirections(response);
     })
     .catch((e) => window.alert("Directions request failed due to " + status));
